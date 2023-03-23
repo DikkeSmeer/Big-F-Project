@@ -7,18 +7,18 @@ public class Offerte {
     private String naam;
     private String beschrijving;
 
-    private ArrayList<EssentieleOpties> essentieleOpties; // bound to change
+    private ArrayList<EssentieleFeatures> essentieleFeatures; // bound to change
     private ArrayList<Klant> klant; // de klant die bij het offerte hoort
 
     private double milieuKorting;
     private double totaalPrijs; // word ge-set vanuit de optionele kosten (van essentieleOpties) en kortingen
 
 
-    public Offerte(int offerteID, String naam, String beschrijving, ArrayList<EssentieleOpties> essentieleOpties, ArrayList<Klant> klant, double milieuKorting, double totaalPrijs) {
+    public Offerte(int offerteID, String naam, String beschrijving, ArrayList<EssentieleFeatures> essentieleFeatures, ArrayList<Klant> klant, double milieuKorting, double totaalPrijs) {
         this.offerteID = offerteID;
         this.naam = naam;
         this.beschrijving = beschrijving;
-        this.essentieleOpties = essentieleOpties;
+        this.essentieleFeatures = essentieleFeatures;
         this.klant = klant;
         this.milieuKorting = milieuKorting;
         this.totaalPrijs = totaalPrijs;
@@ -40,12 +40,12 @@ public class Offerte {
         this.beschrijving = beschrijving;
     }
 
-    public ArrayList<EssentieleOpties> getEssentieleOpties() {
-        return essentieleOpties;
+    public ArrayList<EssentieleFeatures> essentieleFeatures() {
+        return essentieleFeatures;
     }
 
-    public void setEssentieleOpties(ArrayList<EssentieleOpties> essentieleOpties) {
-        this.essentieleOpties = essentieleOpties;
+    public void setEssentieleOpties(ArrayList<EssentieleFeatures> essentieleFeatures) {
+        this.essentieleFeatures = essentieleFeatures;
     }
 
     public ArrayList<Klant> getKlant() {

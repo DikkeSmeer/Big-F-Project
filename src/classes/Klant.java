@@ -26,4 +26,3 @@ public class Klant extends Gebruiker{
         this.klantKorting = klantKorting;
     }
 }
-

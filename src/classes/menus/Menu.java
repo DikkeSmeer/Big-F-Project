@@ -4,90 +4,53 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-    private ArrayList<MenuOption> options;
-    private Scanner scanner;
+    protected ArrayList<MenuItem> menu = new ArrayList<>();
+    private Scanner sc = new Scanner(System.in);
 
-    public Menu() {
-        options = new ArrayList<MenuOption>();
-        scanner = new Scanner(System.in);
-    }
-
-    public void addOption(MenuOption option) {
-        options.add(option);
-    }
-
-    public void display() {
-        while (true) {
-            System.out.println("Main Menu:");
-            for (int i = 0; i < options.size(); i++) {
-                System.out.println((i + 1) + ". " + options.get(i).getName());
-            }
-            System.out.println("0. Exit");
-
-            int choice = scanner.nextInt();
-            if (choice == 0) {
-                break;
-            } else if (choice >= 1 && choice <= options.size()) {
-                options.get(choice - 1).displaySubMenu(scanner);
-            } else {
-                System.out.println("Invalid choice.");
-            }
+    public int printMenu() {
+        int index = 1;
+        System.out.println("Kies uw optie:");
+        for (MenuItem item : menu) {
+            System.out.println(index + ": " + item.getName());
+            index++;
         }
+        return sc.nextInt();
+    }
+}
+class HoofdMenu extends Menu {
+    public void createMenu() {
+        // add opties in het menu die een eigen extend hebben - zoals offerte aanmaak menu
+        // - OfferteMenu - KlantenMenu - ExtrasMenu
+        menu.add(new OfferteOverzichtItem("Offerte Overzicht"));
+        menu.add(new KlantenOverzichtItem("Klanten Overzicht"));
+
+    }
+
+    public void execute(int input) {
+        menu.get(input -1 ).execute();
     }
 }
 
-class MenuOption {
-    private String name;
-    private ArrayList<SubMenuOption> subMenuOptions;
-
-    public MenuOption(String name) {
-        this.name = name;
-        subMenuOptions = new ArrayList<SubMenuOption>();
+// alle sub-menu's die items uitvoeren hieronder
+// Offerte Sub Menu
+class OfferteMenu extends Menu {
+    public void createMenu() {
+        menu.add(new OfferteAanmakenItem("Offerte Aanmaken"));
+        menu.add(new OfferteBekijkenItem("Offertes Bekijken"));
+        menu.add(new TerugItem("Terug"));
     }
-
-    public String getName() {
-        return name;
+    public void execute(int input) {
+        // execute de execute van de mnu item, leest input van de scanner
+        menu.get(input-1).execute();
     }
-
-    public void addSubMenuOption(SubMenuOption option) {
-        subMenuOptions.add(option);
-    }
-
-    public void displaySubMenu(Scanner scanner) {
-        while (true) {
-            System.out.println(this.giveSubmenuName());
-            for (int i = 0; i < subMenuOptions.size(); i++) {
-                System.out.println((i + 1) + ". " + subMenuOptions.get(i).getName());
-            }
-            System.out.println("0. Back");
-
-            int choice = scanner.nextInt();
-            if (choice == 0) {
-                break;
-            } else if (choice >= 1 && choice <= subMenuOptions.size()) {
-                subMenuOptions.get(choice - 1).performAction();
-            } else {
-                System.out.println("Invalid choice.");
-            }
-        }
-    }
-    public String giveSubmenuName(){
-        return this.getName();
+}
+// Klanten Menu
+class KlantenMenu extends Menu {
+    public void createMenu(){
+        menu.add(new KlantAanmakenItem("Klant Aanmaken"));
+        menu.add(new KlantenBekijkenItem("Klanten Bekijken"));
+        menu.add(new TerugItem("Terug"));
     }
 }
 
-class SubMenuOption {
-    private String name;
-
-    public SubMenuOption(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void performAction() {
-        System.out.println("Performing action for " + name);
-    }
-}
+// Voeg hier een Menu toe voor wat je nodig hebt en add de Menu items die je wilt gebruiken aan de array list

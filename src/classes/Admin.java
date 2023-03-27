@@ -15,4 +15,6 @@ public class Admin extends Gebruiker{
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
 }
+

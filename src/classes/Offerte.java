@@ -8,7 +8,7 @@ public class Offerte {
     private String beschrijving;
 
     private ArrayList<EssentieleFeatures> essentieleFeatures; // bound to change
-    private ArrayList<Klant> klant; // de klant die bij het offerte hoort
+    private ArrayList<Klant> klant; // de klant die bij de offerte hoort
 
     private double milieuKorting;
     private double totaalPrijs; // word ge-set vanuit de optionele kosten (van essentieleOpties) en kortingen

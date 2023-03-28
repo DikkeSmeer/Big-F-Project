@@ -1,15 +1,18 @@
-package classes.menus;
+package classes;
 
-abstract class MenuItem {
+import Interfaces.MenuItemInterface;
+
+abstract class MenuItem implements MenuItemInterface {
     // een menu item heeft een naam en een execute functie, deze word overwritten per item
     String name;
+
+    // construct en name Getter
     public MenuItem(String name) {
         this.name = name;
     }
-    String getName() {
+    public String getName() {
         return name;
     }
-    public void execute(){};
 }
 
 class OfferteOverzichtItem extends MenuItem {

@@ -32,10 +32,9 @@ class KlantenOverzichtItem extends MenuItem {
     }
     @Override
     public void execute() {
-        OfferteMenu bmenu = new OfferteMenu();
-        bmenu.createMenu();
-        bmenu.execute(bmenu.printMenu());
-        System.out.println("Test");
+        KlantenMenu kmenu = new KlantenMenu();
+        kmenu.createMenu();
+        kmenu.execute(kmenu.printMenu());
     }
 }
 

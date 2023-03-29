@@ -23,3 +23,12 @@ public class TOI extends Offerte{
     }
 
 }
+// Big F
+
+// KlantNaam
+// KlantAdres
+
+// OfferteDatum
+// Vervaldag
+
+// Product | Aantal | Tarief | BTW | Bedrag

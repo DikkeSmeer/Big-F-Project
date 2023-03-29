@@ -93,13 +93,13 @@ public class Gebruiker {
     }
     public void verwijderGebruiker(int ID){
         int j = 0;
-        for (j = 0; j < gebruikers.size(); j++) ;
-        Gebruiker huidigGebruiker = gebruikers.get(j);
-        if (huidigGebruiker.getID() == getID()) {
-            gebruikers.remove(getID());
-            System.out.println("Gebruiker met ID:"+getID()+" is verwijderd");
+        for (j = 0; j < gebruikers.size(); j++) {
+            Gebruiker huidigGebruiker = gebruikers.get(j);
+            if (huidigGebruiker.getID() == getID()) {
+                gebruikers.remove(getID());
+                System.out.println("Gebruiker met ID:" + getID() + " is verwijderd");
+            }
         }
-
     }
 
     public void bekijkenGebruiker(){

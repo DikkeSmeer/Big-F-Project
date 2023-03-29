@@ -70,11 +70,12 @@ public class Klant extends Gebruiker{
     }
     public void verwijderKlant(int ID) {
         int i;
-        for (i = 0; i < klant.size(); i++) ;
-        Klant huidigKlant = klant.get(i);
-        if (huidigKlant.getID() == getID()) {
-            klant.remove(getID());
-            System.out.println("Klant met ID:" + getID() + " is verwijderd");
+        for (i = 0; i < klant.size(); i++) {
+            Klant huidigKlant = klant.get(i);
+            if (huidigKlant.getID() == getID()) {
+                klant.remove(getID());
+                System.out.println("Klant met ID:" + getID() + " is verwijderd");
+            }
         }
     }
 

@@ -51,6 +51,10 @@ class KlantenMenu extends Menu {
         menu.add(new KlantenBekijkenItem("Klanten Bekijken"));
         menu.add(new TerugItem("Terug"));
     }
+    public void execute(int input) {
+        // execute de execute van de mnu item, leest input van de scanner
+        menu.get(input-1).execute();
+    }
 }
 
 // Voeg hier een Menu toe voor wat je nodig hebt en add de Menu items die je wilt gebruiken aan de array list

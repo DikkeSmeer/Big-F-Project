@@ -25,4 +25,8 @@ public class Klant extends Gebruiker{
     public void setKlantKorting(double klantKorting) {
         this.klantKorting = klantKorting;
     }
+
+
+
+
 }

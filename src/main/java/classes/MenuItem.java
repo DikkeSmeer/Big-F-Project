@@ -3,7 +3,7 @@ package classes;
 import Interfaces.MenuItemInterface;
 
 abstract class MenuItem implements MenuItemInterface {
-    // een menu item heeft een naam en een execute functie, deze word overwritten per item
+    // een menu item heeft een naam en een execute functie, deze wordt overwritten per item
     String name;
 
     // construct en name Getter

@@ -19,7 +19,6 @@ class OfferteOverzichtItem extends MenuItem {
     public OfferteOverzichtItem(String name) {
         super(name);
     }
-    @Override
     public void execute() {
         OfferteMenu bmenu = new OfferteMenu();
         bmenu.createMenu();
@@ -30,7 +29,6 @@ class KlantenOverzichtItem extends MenuItem {
     public KlantenOverzichtItem(String name) {
         super(name);
     }
-    @Override
     public void execute() {
         KlantenMenu kmenu = new KlantenMenu();
         kmenu.createMenu();
@@ -42,7 +40,6 @@ class TerugItem extends MenuItem {
     public TerugItem(String name) {
         super(name);
     }
-    @Override
     public void execute() {
         // FIX THIS
     }
@@ -55,9 +52,10 @@ class OfferteAanmakenItem extends MenuItem {
     public OfferteAanmakenItem(String name) {
         super(name);
     }
-    @Override
     public void execute() {
         System.out.println("Dit voert de :Offerte Aanmaken: uit.");
+        // hier execute offerte aanmaak functie in offerte.java
+        Offerte offerte = new Offerte();
     }
 }
 
@@ -65,7 +63,6 @@ class OfferteBekijkenItem extends MenuItem {
     public OfferteBekijkenItem(String name) {
         super(name);
     }
-    @Override
     public void execute() {
         //Lijst.printLijst(Lijst.getLijst(),3);
         System.out.println("Dit voert de :Alle Offerte Laten zien: uit.");
@@ -77,7 +74,6 @@ class KlantAanmakenItem extends MenuItem{
     public KlantAanmakenItem(String name) {
         super(name);
     }
-    @Override
     public void execute() {
         System.out.println("Dit voert de :Klant aanmaken: uit.");
     }
@@ -86,7 +82,6 @@ class KlantenBekijkenItem extends MenuItem{
     public KlantenBekijkenItem(String name) {
         super(name);
     }
-    @Override
     public void execute() {
         System.out.println("Dit voert de :Klanten Overzicht: uit.");
     }

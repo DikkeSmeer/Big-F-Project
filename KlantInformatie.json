@@ -1,42 +1,10 @@
 [
   {
-    "naam": "Jan",
-    "leeftijd": 1,
-    "password": "wachtwoord1",
-    "email": "jan@mail.com",
-    "functie": "particulier",
-    "korting": 0.05
-  },
-  {
-    "naam": "Piet",
-    "leeftijd": 2,
-    "password": "wachtwoord2",
-    "email": "piet@mail.com",
-    "functie": "particulier",
-    "korting": 0.1
-  },
-  {
-    "naam": "Klaas",
-    "leeftijd": 3,
-    "password": "wachtwoord3",
-    "email": "klaas@mail.com",
-    "functie": "bedrijf",
-    "korting": 0.15
-  },
-  {
-    "naam": "Henk",
-    "leeftijd": 4,
-    "password": "wachtwoord4",
-    "email": "henk@mail.com",
-    "functie": "bedrijf",
-    "korting": 0.2
-  },
-  {
-    "naam": "Sjaak",
-    "leeftijd": 5,
-    "password": "wachtwoord5",
-    "email": "sjaak@mail.com",
-    "functie": "particulier",
-    "korting": 0.05
+    "naam": "Quincy",
+    "leeftijd": 17,
+    "password": "Admin",
+    "email": "quincy@example.nl",
+    "functie": "Player",
+    "korting": 12.0
   }
 ]

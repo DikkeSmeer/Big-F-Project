@@ -1,16 +1,24 @@
 package classes;
 
+import java.util.ArrayList;
+
 public class Gebruiker {
     private String naam;
     private int ID;
     private String password;
     private String email;
 
+    private ArrayList<Gebruiker> gebruikers;
+
     public Gebruiker(String naam, int ID, String password, String email) {
         this.naam = naam;
         this.ID = ID;
         this.password = password;
         this.email = email;
+    }
+
+    public Gebruiker() {
+        this.gebruikers = new ArrayList<>();
     }
 
     public String getNaam() {
@@ -43,5 +51,13 @@ public class Gebruiker {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public ArrayList<Gebruiker> getGebruikers() {
+        return gebruikers;
+    }
+
+    public void setGebruikers(ArrayList<Gebruiker> gebruikers) {
+        this.gebruikers = gebruikers;
     }
 }

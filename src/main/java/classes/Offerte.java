@@ -1,9 +1,18 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Offerte {
+
+    /* Save Objects vvv*/
+    ObjectSaver<Klant> objectSaver = new ObjectSaver<>("KlantInformatie.json"); // Maak een nieuw ObjectSaver-object voor KlantInfo-objecten met de .json file naam "KlantInformatie.json".
+    /* Save Objects ^^^*/
+    /* Load Objects  vvv */
+    ObjectLoader<Klant> objectLoader = new ObjectLoader<>(Klant.class, "KlantInformatie.json");
+    /* Load Objects  ^^^ */
+
     private int offerteID;
     private String naam;
     private String beschrijving;
@@ -87,44 +96,44 @@ public class Offerte {
 
 
         // vraag om een naam via scanner
-        System.out.println("Wat wordt de naam van dit offerte?");
+        System.out.println("Wat is de naam van de offerte?");
         String tempNaam = invoer.nextLine();
         this.naam = tempNaam;
 
         System.out.println("");
 
         // vraag om een beschrijving via scanner
-        System.out.println("Beschrijf dit offerte: ");
+        System.out.println("Beschrijf de offerte: ");
         String tempBeschrijving = invoer.nextLine();
         this.beschrijving = tempBeschrijving;
 
 
-        //vraag om essentiele features
+        //vraag om essentiële features
         ArrayList<ExtraOpties> addExtraOpties = new ArrayList<>();
 
-        // Vraag of er een feature bij moet - ja blijf loopen - nee break
-        System.out.println("-- Hoeveel extra opties wilt u toevoegen: ");
+        // Vraag of er een feature bij moet - ja, blijf loopen - nee, break
+        System.out.println("-- Hoeveel extra opties wilt u toevoegen?: ");
         // scanner
         int aantal = invoer.nextInt();
 
-        // van int naar een string moet een empty line erbij
+        // van int naar een String moet een empty line erbij
         invoer.nextLine();
 
         for (int i = 0; i < aantal; aantal--) {
-            // naam van de feature - check is het een string
+            // naam van de feature - check is het een String
 
-            System.out.println("-- Wat is de naam van de Feature: ");
+            System.out.println("-- Wat is de naam van de feature?: ");
             String featureName = invoer.nextLine();
 
             // vraag om de prijs - check is het een int
             // scanner
-            System.out.println("-- Wat word de prijs: (2 decimale getal) ");
+            System.out.println("-- Wat wordt de prijs?: (2 decimale getal) ");
             double featurePrice = invoer.nextDouble();
 
-            // van int naar een string moet een empty line erbij
+            // van int naar een String moet een empty line erbij
             invoer.nextLine();
 
-            // voeg de 2 variablen toe aan een essentiele feature
+            // voeg de 2 variabelen toe aan een essentiële feature
             ExtraOpties optie = new ExtraOpties(featureName, featurePrice);
             addExtraOpties.add(optie);
         }
@@ -136,18 +145,26 @@ public class Offerte {
             System.out.println(optie.getName() + optie.getPrijs());
             totaal += optie.getPrijs();
         }
-        System.out.println("Het totaal bedrag = " + totaal);
+        System.out.println("Het totale bedrag = " + totaal);
 
-            // vraag voor welke klant dit is
+
+        // vraag voor welke klant de offerte is
+        System.out.println("--Voor welke klant wordt de offerte aangemaakt?: ");
+            List<Klant> loadedObject = objectLoader.loadObjects();
+            for (Klant obj : loadedObject) {
+                System.out.println("\nKlant naam: " + obj.getNaam() + "\nKlant ID: " + obj.getID());
+            }
+        }
+
             // laat een lijst met alle klanten zien en print alleen id en naam - [--klant 1: naamKlant]
-            // scanner index == met id van een klant - pak die klant en voeg het KLANT OBJECT toe
-            //Klant addKlant;
+            // scanner index == met id van een klant - pak die klant
+            // terug functie
 
             // vraag of er een milieu korting moet worden toegevoegd
             // scanner - als het ja is set de korting vanuit scanner
             // is het nee set de korting als 0.00
-            //double addMilieuKorting = 0.00;
+            // double addMilieuKorting = 0.00;
 
     }
 
-}
+

@@ -161,7 +161,6 @@ class KlantenBekijkenItem extends MenuItem {
     }
 
     public void execute() {
-
         // Load the list of Klant objects from the JSON file
         List<Klant> loadedObjects = objectLoader.loadObjects();
 
@@ -174,6 +173,7 @@ class KlantenBekijkenItem extends MenuItem {
         int ingevuldeID;
         System.out.println("\nVul klant ID in: ");
         ingevuldeID = scanner.nextInt();
+        scanner.nextLine(); // Add this line to consume the newline character
 
         // Search for the Klant object with the entered ID and print its details
         for (Klant objSearch : loadedObjects) {
@@ -186,7 +186,6 @@ class KlantenBekijkenItem extends MenuItem {
 
         // Ask the user if the details are correct
         System.out.println("\nZijn deze klantgegevens correct? (ja/nee): ");
-        scanner.nextLine();
         while (!correcteGegevens) {
             String gegevensCorrect = scanner.nextLine();
             if (gegevensCorrect.equalsIgnoreCase("nee")) {
@@ -204,6 +203,7 @@ class KlantenBekijkenItem extends MenuItem {
                 String klantType = scanner.nextLine();
                 System.out.print("Klant korting: ");
                 double klantKorting = scanner.nextDouble();
+                scanner.nextLine(); // Add this line to consume the newline character
 
                 // Search for the Klant object with the entered ID and update its details
                 for (Klant objSearch : loadedObjects) {
@@ -224,6 +224,7 @@ class KlantenBekijkenItem extends MenuItem {
                         System.out.println("Klant korting: " + objSearch.getKlantKorting());
                     }
                 }
+
                 // Save the updated Klant objects to the JSON file
                 for (Klant obj : loadedObjects) {
                     objectSaver.addObject(obj);
@@ -243,9 +244,11 @@ class KlantenBekijkenItem extends MenuItem {
 
         System.out.println("Wil je terug naar het hoofdmenu? (ja/nee): ");
         String antwoord = scanner.nextLine();
-        if (antwoord.equalsIgnoreCase("ja")){
-            menu.execute(menu.printMenu());        }
-
+        if (antwoord.equalsIgnoreCase("ja")) {
+            HoofdMenu menu = new HoofdMenu();
+            menu.createMenu();
+            menu.execute(menu.printMenu());
+        }
     }
 }
 

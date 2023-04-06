@@ -240,6 +240,12 @@ class KlantenBekijkenItem extends MenuItem {
                 System.out.println("Antwoord niet herkend, probeer opnieuw (ja/nee): ");
             }
         }
+
+        System.out.println("Wil je terug naar het hoofdmenu? (ja/nee): ");
+        String antwoord = scanner.nextLine();
+        if (antwoord.equalsIgnoreCase("ja")){
+            menu.execute(menu.printMenu());        }
+
     }
 }
 

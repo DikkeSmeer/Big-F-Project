@@ -118,7 +118,7 @@ class KlantAanmakenItem extends MenuItem{
             // Toon de nieuwe gegevens aan de gebruiker ter verificatie
             System.out.println("\nHier zijn de nieuwe klantgegevens:");
             System.out.println("Klant naam: " + KlantInfo.getNaam());
-            System.out.println("Klant leeftijd: " + KlantInfo.getID());
+            System.out.println("Klant ID: " + KlantInfo.getID());
             System.out.println("Klant wachtwoord: " + KlantInfo.getPassword());
             System.out.println("Klant email: " + KlantInfo.getEmail());
             System.out.println("Klant functie: " + KlantInfo.getKlantType());
@@ -142,6 +142,8 @@ class KlantAanmakenItem extends MenuItem{
     }
 }
 class KlantenBekijkenItem extends MenuItem {
+    Scanner scanner = new Scanner(System.in);
+
 
     /* Save Objects vvv*/
     ObjectSaver<Klant> objectSaver = new ObjectSaver<>("KlantInformatie.json"); // Maak een nieuw ObjectSaver-object voor KlantInfo-objecten met de .json file naam "KlantInformatie.json".
@@ -150,15 +152,23 @@ class KlantenBekijkenItem extends MenuItem {
     ObjectLoader<Klant> objectLoader = new ObjectLoader<>(Klant.class, "KlantInformatie.json");
     /* Load Objects  ^^^ */
 
+    List<Klant> loadedObjects = objectLoader.loadObjects();
     public KlantenBekijkenItem(String name) {
         super(name);
     }
 
     public void execute() {
 
-        List<Klant> loadedObjects = objectLoader.loadObjects();
-        for (Klant obj : loadedObjects) {
-            System.out.println("\nKlantnaam: " + obj.getNaam() + "\nKlantID: " + obj.getID() + "\nKlant wachtwoord: " + obj.getPassword() + "\nKlant email: " + obj.getEmail() + "\nKlanttype: " + obj.getKlantType() + "\nKlantkorting: " + obj.getKlantKorting());
+        for (Klant objPrint : loadedObjects) {
+            System.out.println("Klantnaam: " + objPrint.getNaam() + "\nID: " + objPrint.getID());
+        }
+        int ingevuldeID;
+        System.out.println("Vul klant ID in: ");
+        ingevuldeID = scanner.nextInt();
+        for (Klant objSearch : loadedObjects) {
+            if (objSearch.getID() == ingevuldeID){
+                System.out.println("Klant naam: " + objSearch.getNaam() + "\nKLant ID: " + objSearch.getID() + "\nKlant wachtwoord: " + objSearch.getPassword() + "\nKlant e-mail: " + objSearch.getEmail() + "\nKlant type: " + objSearch.getKlantType() + "\nKlant korting: " + objSearch.getKlantKorting());
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
 package classes;
 
 import Interfaces.MenuItemInterface;
+import jdk.nashorn.internal.ir.WhileNode;
+
 import java.util.Scanner;
 import java.util.List;
 
@@ -153,24 +155,93 @@ class KlantenBekijkenItem extends MenuItem {
     /* Load Objects  ^^^ */
 
     List<Klant> loadedObjects = objectLoader.loadObjects();
+
     public KlantenBekijkenItem(String name) {
         super(name);
     }
 
     public void execute() {
 
+        // Load the list of Klant objects from the JSON file
+        List<Klant> loadedObjects = objectLoader.loadObjects();
+
+        // Print the list of loaded Klant objects
         for (Klant objPrint : loadedObjects) {
-            System.out.println("Klantnaam: " + objPrint.getNaam() + "\nID: " + objPrint.getID());
+            System.out.println("\nKlantnaam: " + objPrint.getNaam() + "\nID: " + objPrint.getID());
         }
+
+        // Ask the user to enter a Klant ID
         int ingevuldeID;
-        System.out.println("Vul klant ID in: ");
+        System.out.println("\nVul klant ID in: ");
         ingevuldeID = scanner.nextInt();
+
+        // Search for the Klant object with the entered ID and print its details
         for (Klant objSearch : loadedObjects) {
-            if (objSearch.getID() == ingevuldeID){
-                System.out.println("Klant naam: " + objSearch.getNaam() + "\nKLant ID: " + objSearch.getID() + "\nKlant wachtwoord: " + objSearch.getPassword() + "\nKlant e-mail: " + objSearch.getEmail() + "\nKlant type: " + objSearch.getKlantType() + "\nKlant korting: " + objSearch.getKlantKorting());
+            if (objSearch.getID() == ingevuldeID) {
+                System.out.println("\nKlant naam: " + objSearch.getNaam() + "\nKlant ID: " + objSearch.getID() + "\nKlant wachtwoord: " + objSearch.getPassword() + "\nKlant e-mail: " + objSearch.getEmail() + "\nKlant type: " + objSearch.getKlantType() + "\nKlant korting: " + objSearch.getKlantKorting());
+            }
+        }
+
+        boolean correcteGegevens = false;
+
+        // Ask the user if the details are correct
+        System.out.println("\nZijn deze klantgegevens correct? (ja/nee): ");
+        scanner.nextLine();
+        while (!correcteGegevens) {
+            String gegevensCorrect = scanner.nextLine();
+            if (gegevensCorrect.equalsIgnoreCase("nee")) {
+                // Ask the user to enter new Klant details
+                System.out.println("\nVoer nieuwe gegevens in:");
+
+                // Ask for the new Klant details
+                System.out.print("Klant naam: ");
+                String klantNaam = scanner.nextLine();
+                System.out.print("Klant wachtwoord: ");
+                String klantWachtwoord = scanner.nextLine();
+                System.out.print("Klant e-mail: ");
+                String klantEmail = scanner.nextLine();
+                System.out.print("Klant type: ");
+                String klantType = scanner.nextLine();
+                System.out.print("Klant korting: ");
+                double klantKorting = scanner.nextDouble();
+
+                // Search for the Klant object with the entered ID and update its details
+                for (Klant objSearch : loadedObjects) {
+                    if (objSearch.getID() == ingevuldeID) {
+                        objSearch.setNaam(klantNaam);
+                        objSearch.setPassword(klantWachtwoord);
+                        objSearch.setEmail(klantEmail);
+                        objSearch.setKlantType(klantType);
+                        objSearch.setKlantKorting(klantKorting);
+
+                        // Print the updated Klant details for the user to verify
+                        System.out.println("\nHier zijn de nieuwe klantgegevens:");
+                        System.out.println("Klant naam: " + objSearch.getNaam());
+                        System.out.println("Klant ID: " + objSearch.getID());
+                        System.out.println("Klant wachtwoord: " + objSearch.getPassword());
+                        System.out.println("Klant e-mail: " + objSearch.getEmail());
+                        System.out.println("Klant type: " + objSearch.getKlantType());
+                        System.out.println("Klant korting: " + objSearch.getKlantKorting());
+                    }
+                }
+                // Save the updated Klant objects to the JSON file
+                for (Klant obj : loadedObjects) {
+                    objectSaver.addObject(obj);
+                }
+                objectSaver.saveObjects();
+
+                // Print a message to confirm that the Klant details have been updated
+                System.out.println("\nDe klantgegevens zijn opgeslagen!");
+
+                correcteGegevens = true;
+            } else if (gegevensCorrect.equalsIgnoreCase("ja")) {
+                correcteGegevens = true;
+            } else {
+                System.out.println("Antwoord niet herkend, probeer opnieuw (ja/nee): ");
             }
         }
     }
 }
+
 
 // voeg hier meerdere menuitems toe op basis van een Menu Class in Menu

@@ -19,7 +19,7 @@ public class Menu {
 }
 class HoofdMenu extends Menu {
     public void createMenu() {
-        // add opties in het menu die een eigen extend hebben - zoals offerte aanmaak menu
+         //add opties in het menu die een eigen extend hebben - zoals offerte aanmaak menu
         // - OfferteMenu - KlantenMenu - ExtrasMenu
         menu.add(new OfferteOverzichtItem("Offerte Overzicht"));
         menu.add(new KlantenOverzichtItem("Klanten Overzicht"));

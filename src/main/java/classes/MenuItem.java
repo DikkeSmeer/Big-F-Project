@@ -172,5 +172,7 @@ class KlantenBekijkenItem extends MenuItem {
         for (Klant obj : loadedObjects) {
             System.out.println("\nKlantnaam: " + obj.getNaam() + "\nKlantID: " + obj.getID() + "\nKlant wachtwoord: " + obj.getPassword() + "\nKlant email: " + obj.getEmail() + "\nKlanttype: " + obj.getKlantType() + "\nKlantkorting: " + obj.getKlantKorting());
         }
+        MenuItem terug = new TerugItem("Back to main");
+        terug.execute();
     }
 }

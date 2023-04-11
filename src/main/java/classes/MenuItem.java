@@ -2,7 +2,7 @@ package classes;
 
 import Interfaces.MenuItemInterface;
 import jdk.nashorn.internal.ir.WhileNode;
-
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.List;
 
@@ -199,7 +199,7 @@ class KlantenBekijkenItem extends MenuItem {
 
         // Ask the user if the details are correct
         System.out.println("\nZijn deze klantgegevens correct? (ja/nee): ");
-        System.out.println("\nOf wil je deze klantgegevens verwijderen? (verwijderen): ");
+        System.out.println("\nOf wil je deze klantgegevens verwijderen? (verwijder): ");
 
         while (!correcteGegevens) {
             String gegevensCorrect = scanner.nextLine();
@@ -254,23 +254,31 @@ class KlantenBekijkenItem extends MenuItem {
                 correcteGegevens = true;
             } else if (gegevensCorrect.equalsIgnoreCase("verwijder")){
 
-                for (Klant objSearch : loadedObjects) {
-                    if (objSearch.getID() == ingevuldeID) {
+                Iterator<Klant> iterator = loadedObjects.iterator();
 
+                while (iterator.hasNext()) {
+                    Klant objSearch = iterator.next();
+                    if (objSearch.getID() == ingevuldeID) {
+                        iterator.remove();
+                        System.out.println("Klant is succesvol verwijderd!");
+
+                        // Save the updated Klant objects to the JSON file
+                        objectSaver.saveObjects(loadedObjects);
+
+                        break;
                     }
                 }
-
             } else {
-                System.out.println("Antwoord niet herkend, probeer opnieuw (ja/nee): ");
+                System.out.println("Antwoord niet herkend, probeer opnieuw (ja/nee/verwijder): ");
             }
-        }
 
-        System.out.println("Wil je terug naar het hoofdmenu? (ja/nee): ");
-        String antwoord = scanner.nextLine();
-        if (antwoord.equalsIgnoreCase("ja")) {
-            HoofdMenu menu = new HoofdMenu();
-            menu.createMenu();
-            menu.execute(menu.printMenu());
+            System.out.println("Wil je terug naar het hoofdmenu? (ja/nee): ");
+            String antwoord = scanner.nextLine();
+            if (antwoord.equalsIgnoreCase("ja")) {
+                HoofdMenu menu = new HoofdMenu();
+                menu.createMenu();
+                menu.execute(menu.printMenu());
+            }
         }
     }
 }

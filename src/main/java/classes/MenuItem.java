@@ -199,6 +199,8 @@ class KlantenBekijkenItem extends MenuItem {
 
         // Ask the user if the details are correct
         System.out.println("\nZijn deze klantgegevens correct? (ja/nee): ");
+        System.out.println("\nOf wil je deze klantgegevens verwijderen? (verwijderen): ");
+
         while (!correcteGegevens) {
             String gegevensCorrect = scanner.nextLine();
             if (gegevensCorrect.equalsIgnoreCase("nee")) {
@@ -250,6 +252,14 @@ class KlantenBekijkenItem extends MenuItem {
                 correcteGegevens = true;
             } else if (gegevensCorrect.equalsIgnoreCase("ja")) {
                 correcteGegevens = true;
+            } else if (gegevensCorrect.equalsIgnoreCase("verwijder")){
+
+                for (Klant objSearch : loadedObjects) {
+                    if (objSearch.getID() == ingevuldeID) {
+
+                    }
+                }
+
             } else {
                 System.out.println("Antwoord niet herkend, probeer opnieuw (ja/nee): ");
             }

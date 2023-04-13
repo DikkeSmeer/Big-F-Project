@@ -3,10 +3,10 @@ package classes;
 public class Product {
     private String product;
     private int aantal;
-    private int tarief;
-    private int bedrag;
+    private double tarief;
+    private double bedrag;
 
-    public Product(String product, int aantal, int tarief, int bedrag) {
+    public Product(String product, int aantal, double tarief, double bedrag) {
         this.product = product;
         this.aantal = aantal;
         this.tarief = tarief;
@@ -29,19 +29,19 @@ public class Product {
         this.aantal = aantal;
     }
 
-    public int getTarief() {
+    public double getTarief() {
         return tarief;
     }
 
-    public void setTarief(int tarief) {
+    public void setTarief(double tarief) {
         this.tarief = tarief;
     }
 
-    public int getBedrag() {
+    public double getBedrag() {
         return bedrag;
     }
 
-    public void setBedrag(int bedrag) {
+    public void setBedrag(double bedrag) {
         this.bedrag = bedrag;
     }
 }

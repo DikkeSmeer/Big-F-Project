@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class Offerte{
 
-    /* Save Objects vvv */
-    ObjectSaver<Klant> objectSaver = new ObjectSaver<>("KlantInformatie.json"); // Maak een nieuw ObjectSaver-object voor KlantInfo-objecten met de .json file naam "KlantInformatie.json".
-    /* Save Objects ^^^ */
-    /* Load Objects vvv */
+    // Bewaart objecten
+    ObjectSaver<Klant> objectSaver = new ObjectSaver<>("KlantInformatie.json");
+    // Maak een nieuw ObjectSaver-object voor KlantInfo-objecten met de .json file naam "KlantInformatie.json".
+
+    // Laadt objecten
     ObjectLoader<Klant> objectLoader = new ObjectLoader<>(Klant.class, "KlantInformatie.json");
-    /* Load Objects ^^^ */
 
     LocalDate offertedatum = LocalDate.now();
     LocalDate vervaldatum = offertedatum.plus(14, ChronoUnit.DAYS);
@@ -21,13 +21,14 @@ public class Offerte{
     private int offerteID;
     private String offerteNaam;
     private String beschrijving;
+    static private int ingevuldeKlantID;
 
-    private ArrayList<EssentieleFeatures> essentieleFeatures; // bound to change
+    private ArrayList<EssentieleFeatures> essentieleFeatures; // Bound to change
     private ArrayList<ExtraOpties> extraOpties;
-    private ArrayList<Klant> klant; // de klant die bij de offerte hoort
+    private ArrayList<Klant> offerteKlant; // Klant die bij de offerte hoort
 
     private double milieuKorting;
-    private double totaalPrijs; // wordt ge-set vanuit de optionele kosten (van essentieleOpties) en kortingen
+    private double totaalPrijs; // Wordt ge-set vanuit de optionele kosten (van essentieleOpties) en kortingen
 
 
     //    public Offerte(String naam, String beschrijving, ArrayList<EssentieleFeatures> essentieleFeatures, ArrayList<Klant> klant, double milieuKorting) {
@@ -71,12 +72,12 @@ public class Offerte{
         this.extraOpties = extraOpties;
     }
 
-    public ArrayList<Klant> getKlant() {
-        return klant;
+    public ArrayList <Klant> getOfferteKlant() {
+        return offerteKlant;
     }
 
-    public void setKlant(ArrayList<Klant> klant) {
-        this.klant = klant;
+    public void setKlant(ArrayList <Klant> offerteKlant) {
+        this.offerteKlant = offerteKlant;
     }
 
     public double getMilieuKorting() {
@@ -97,52 +98,51 @@ public class Offerte{
 
 
     public void aanmakenOfferte() {
-        // Load the list of Klant objects from the JSON file
-        List<Klant> loadedObjects = objectLoader.loadObjects();
+
+        // List<Klant> loadedObjects = objectLoader.loadObjects();
 
         Scanner scanner = new Scanner(System.in);
-        // vraag om alle info
+        // Vraag om alle info
 
 
-        // vraag om een naam via scanner
+        // Vraag om de naam van de offerte via scanner
         System.out.println("Wat is de naam van de offerte?");
         String tempNaam = scanner.nextLine();
         this.offerteNaam = tempNaam;
 
         System.out.println("");
 
-        // vraag om een beschrijving via scanner
+        // Vraag om een beschrijving van de offerte via scanner
         System.out.println("Beschrijf de offerte: ");
         String tempBeschrijving = scanner.nextLine();
         this.beschrijving = tempBeschrijving;
 
-
-        //vraag om extra opties
+        // Vraag om extra opties
         ArrayList<ExtraOpties> addExtraOpties = new ArrayList<>();
 
         // Vraag of er een feature bij moet - ja, blijf loopen - nee, break
         System.out.println("-- Hoeveel extra opties wilt u toevoegen?: ");
-        // scanner
+        // Scanner
         int aantal = scanner.nextInt();
 
-        // van int naar een String moet een empty line erbij
+        // Van int naar een String, lege regel erbij
         scanner.nextLine();
 
         for (int i = 0; i < aantal; aantal--) {
-            // naam van de feature - check is het een String
+            // Naam van de feature - check is het een String
 
             System.out.println("-- Wat is de naam van de feature?: ");
             String featureName = scanner.nextLine();
 
-            // vraag om de prijs - check is het een int
-            // scanner
+            // Vraag om de prijs - check is het een int
+            // Scanner
             System.out.println("-- Wat wordt de prijs?: (2 decimale getal) ");
             double featurePrice = scanner.nextDouble();
 
-            // van int naar een String moet een empty line erbij
+            // Van int naar een String, lege regel erbij
             scanner.nextLine();
 
-            // voeg de 2 variabelen toe aan een extra opties
+            // Voeg de 2 variabelen toe aan een extra opties
             ExtraOpties optie = new ExtraOpties(featureName, featurePrice);
             addExtraOpties.add(optie);
         }
@@ -157,42 +157,33 @@ public class Offerte{
         System.out.println("Het totale bedrag = " + totaal);
 
 
-        System.out.println("--Voor welke klant wordt de offerte aangemaakt?: "); // vraag voor welke klant de offerte is
+        System.out.println("--Voor welke klant wordt de offerte aangemaakt?: ");
+        // Vraag voor welke klant de offerte is
 
-        List<Klant> loadedObject = objectLoader.loadObjects();                   // laat een lijst met alle klanten zien en print alleen id en naam ( - [--klant 1: naamKlant])
+        List<Klant> loadedObject = objectLoader.loadObjects();
+        // Laat een lijst van alle klanten zien
 
-        for (Klant obj : loadedObject) {                                         // scanner index == met id van een klant - pak die klant en druk af op het scherm
+        // Print alleen id en naam van de klant
+        for (Klant obj : loadedObject) { // scanner index == met id van een klant - pak die klant en druk af op het scherm
             System.out.println("\nKlant naam: " + obj.getNaam() + "\nKlant ID: " + obj.getID());
         }
 
-        int ingevuldeKlantID;
+
         System.out.println("\nVul klant ID in: ");
         ingevuldeKlantID = scanner.nextInt();
-        scanner.nextLine(); // Add this line to consume the newline character
+        scanner.nextLine();
 
-        // Search for the Klant object with the entered ID and print its details
-        for (Klant objSearch : loadedObjects) {
-            if (objSearch.getID() == ingevuldeKlantID) {
-                String klantNaam = objSearch.getNaam();
-                int klantID = objSearch.getID();
-                String klantPassword = objSearch.getPassword();
-                String klantEmail = objSearch.getEmail();
-                String klantType = objSearch.getKlantType();
-                double klantKorting = objSearch.getKlantKorting();
-            }
-        }
-
-        // vraag of er een milieu korting moet worden toegevoegd
+        // Vraag of er een milieu korting moet worden toegevoegd
         System.out.println("\n--Wilt u milieukorting toevoegen?: (ja/nee)");
 
-        // scanner - als het ja is set de korting vanuit scanner
+        // Scanner - als het ja is set de korting vanuit scanner
         String antwoord = scanner.nextLine();
             while(true){
         if (antwoord.equalsIgnoreCase("ja")) {
                 milieuKorting = scanner.nextDouble();
                 break;
             }
-        // is het nee set de korting op 0.00
+        // Is het nee set de korting op 0.00
             else {
                 break;
         }
@@ -202,20 +193,32 @@ public class Offerte{
 
 }
 
-    public static void MaakOfferte() {// functie voor het aanmaken van de offerte met de klantgegevens
-        String klantNaam;
-        String straatnaam;
-        int huisNr;
-        String postcode;
-        String plaatsnaam;
+    public static void MaakOfferte() { // Functie voor het aanmaken van de offerte met de klantgegevens
+
+        ObjectLoader<Klant> objectLoader = new ObjectLoader<>(Klant.class, "KlantInformatie.json"); //laadt objecten
+        List<Klant> loadedObject = objectLoader.loadObjects(); // laat een lijst van alle klanten zien
+
+
         LocalDate offertedatum = LocalDate.now();
         LocalDate vervaldatum = offertedatum.plus(14, ChronoUnit.DAYS);
         String product;
         int aantal;
-        int tarief;
-        int bedrag;
+        double tarief;
+        double bedrag;
 
-        System.out.println("Big F");// overzicht van de opgestelde offerte met de klantgegevens
+
+
+        for (Klant objSearch : loadedObject) {
+            if (objSearch.getID() == ingevuldeKlantID) {
+                String klantNaam = objSearch.getNaam();
+                String straatnaam= objSearch.getEmail();
+                int huisNr = objSearch.getID();
+                String postcode = objSearch.getKlantType();
+                double plaatsnaam = objSearch.getKlantKorting();
+            }
+        }
+
+        System.out.println("Big F"); // Overzicht van de opgestelde offerte met de klantgegevens
         System.out.println("");
         System.out.println("klantNaam");
         System.out.println("straatnaam" + " " + "huisNr");
@@ -226,7 +229,7 @@ public class Offerte{
         System.out.println("Product | Aantal | Tarief | BTW | Bedrag ");
         System.out.printf("%-11s %-7s %-7s %-6s %-5s\n", "product", "aantal", "€" + "tarief", "21%", "€" + "bedrag");
 
-        MenuItem terug = new TerugItem("Back to main");           // terug functie
+        MenuItem terug = new TerugItem("Back to main"); // Terug functie
         terug.execute();
     }
 

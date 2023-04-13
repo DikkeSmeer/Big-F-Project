@@ -167,7 +167,7 @@ class KlantenBekijkenItem extends MenuItem {
     ObjectLoader<Klant> objectLoader = new ObjectLoader<>(Klant.class, "KlantInformatie.json");
     /* Load Objects  ^^^ */
 
-    List<Klant> loadedObjects = objectLoader.loadObjects();
+ //   List<Klant> loadedObjects = objectLoader.loadObjects();
 
     public KlantenBekijkenItem(String name) {
         super(name);

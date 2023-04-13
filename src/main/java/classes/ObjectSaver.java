@@ -29,7 +29,7 @@ public class ObjectSaver<T> {
         }
     }
 
-    // Add this new method to accept a list of objects
+    // Methode voor het opslaan van objecten
     public void saveObjects(List<T> objectList) {
         objects = objectList;
         saveObjects();

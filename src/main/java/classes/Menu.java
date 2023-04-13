@@ -9,7 +9,7 @@ public class Menu {
 
     public int printMenu() {
         int index = 1;
-        System.out.println("Kies uw optie:");
+        System.out.println("Kies uw optie: ");
         for (MenuItem item : menu) {
             System.out.println(index + ": " + item.getName());
             index++;
@@ -19,8 +19,8 @@ public class Menu {
 }
 class HoofdMenu extends Menu {
     public void createMenu() {
-        // add opties in het menu die een eigen extend hebben - zoals offerte aanmaak menu
-        // - OfferteMenu - KlantenMenu - ExtrasMenu
+        // Voegt opties toe aan het menu die een eigen extend hebben - zoals offerteAanmaak menu
+        // - OfferteMenu - KlantenMenu
         menu.add(new OfferteOverzichtItem("Offerte Overzicht"));
         menu.add(new KlantenOverzichtItem("Klanten Overzicht"));
 
@@ -31,7 +31,7 @@ class HoofdMenu extends Menu {
     }
 }
 
-    // alle sub-menu's die items uitvoeren hieronder
+    // Alle sub-menu's die items uitvoeren hieronder
     // Offerte Sub Menu
 class OfferteMenu extends Menu {
     public void createMenu() {
@@ -40,7 +40,7 @@ class OfferteMenu extends Menu {
         menu.add(new TerugItem("Terug"));
     }
     public void execute(int input) {
-        // execute de execute van de menu item, leest input van de scanner
+        // Execute de execute van de menu item, leest input van de scanner
         menu.get(input-1).execute();
     }
 }
@@ -52,7 +52,7 @@ class KlantenMenu extends Menu {
         menu.add(new TerugItem("Terug"));
     }
     public void execute(int input) {
-        // execute de execute van de mnu item, leest input van de scanner
+        // Execute de execute van de mnu item, leest input van de scanner
         menu.get(input-1).execute();
     }
 }

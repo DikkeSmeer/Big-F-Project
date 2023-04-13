@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Klant extends Gebruiker {
     private String klantType;
     private double klantKorting;
-    private ArrayList<Klant> klant; // De klant die bij de offerte hoort
+    private ArrayList<Klant> klant; // Klant die bij de offerte hoort
 
     public Klant(String naam, int ID, String password, String email, String straatnaam, int huisNr, String postcode, String plaatsnaam, String klantType, double klantKorting) {
         super(naam, ID, password, email, straatnaam, huisNr, postcode, plaatsnaam);
@@ -14,7 +14,7 @@ public class Klant extends Gebruiker {
         this.klantKorting = klantKorting;
         this.klant = new ArrayList<Klant>();
     }
-// getters en setters
+// Getters en setters
     public ArrayList<Klant> getKlant() {
         return klant;
     }
@@ -39,7 +39,7 @@ public class Klant extends Gebruiker {
 
     boolean gegevensCorrect = false;
 
-    public void maakKlantAan() { // functie om klanten mee aan te maken
+    public void maakKlantAan() { // Functie om klanten mee aan te maken
         Scanner scanner = new Scanner(System.in);
         System.out.println("Voer de naam van de gebruiker in:");
         String naam = scanner.nextLine();
@@ -51,16 +51,16 @@ public class Klant extends Gebruiker {
         System.out.println("Voer het wachtwoord van de gebruiker in:");
         String password = scanner.nextLine();
 
-        Klant nieuweKlant = new Klant(naam, ID, password, email, "particulier", 0);
+        Klant nieuweKlant = new Klant(naam, ID, password, email,"", 1234, "", "", "", 0.00);
         klant.add(nieuweKlant);
         System.out.println("Klant " + naam + " met ID " + ID + " is aangemaakt.");
         // Slaat klant op in de lijst
     }
 
     public void createMenu(){
-        klant.add(new Klant("Klant Aanmaken", 0, "", "", "", 0));
-        klant.add(new Klant("Klanten Bekijken", 0, "", "", "", 0));
-        klant.add(new Klant("Terug", 0, "", "", "", 0));
+        klant.add(new Klant("Klant Aanmaken", 0, "", "", "", 0, "", "", "", 0.00));
+        klant.add(new Klant("Klanten Bekijken", 0, "", "", "", 0, "", "", "", 0.00));
+        klant.add(new Klant("Terug", 0, "", "", "", 0, "", "", "", 0.00));
         // Klantgegevens aanmaken
     }
 

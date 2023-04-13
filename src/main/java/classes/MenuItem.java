@@ -7,10 +7,10 @@ import java.util.Scanner;
 import java.util.List;
 
 abstract class MenuItem implements MenuItemInterface {
-    // een menu item heeft een naam en een execute functie, deze word overwritten per item
+    // MenuItem heeft een naam en een execute functie, deze worden overwritten per item
     String name;
 
-    // construct en name Getter
+    // Constructor en name getter
     public MenuItem(String name) {
         this.name = name;
     }
@@ -45,20 +45,18 @@ class TerugItem extends MenuItem {
         super(name);
     }
     public void execute() {
-        // FIX THIS
     }
 }
 
 //sub menu Items per SubMenu
 
-// Offerte Overzicht Menu Items
+// Offerte overzicht menu items
 class OfferteAanmakenItem extends MenuItem {
     public OfferteAanmakenItem(String name) {
         super(name);
     }
     public void execute() {
-        System.out.println("Dit voert de :Offerte Aanmaken: uit.");
-        // hier execute offerte aanmaak functie in offerte.java
+        // Hier execute offerteAanmaak functie in offerte.java
         Offerte offerte = new Offerte();
     }
 }
@@ -67,8 +65,7 @@ class OfferteBekijkenItem extends MenuItem {
     public OfferteBekijkenItem(String name) {
         super(name);
     }
-    public void execute() {
-        System.out.println("Dit voert de :Alle Offerte Laten zien: uit.");
+    public void execute(){
     }
 }
 
@@ -109,12 +106,11 @@ class KlantInfoToevoegen {
 
 class KlantAanmakenItem extends MenuItem{
     Scanner scanner = new Scanner(System.in);
-    /* Save Objects vvv*/
+
     ObjectSaver<Klant> objectSaver = new ObjectSaver<>("KlantInformatie.json"); // Maak een nieuw ObjectSaver-object voor KlantInfo-objecten met de .json file naam "KlantInformatie.json".
-    /* Save Objects ^^^*/
-    /* Load Objects  vvv */
+    // Slaat objecten op
     ObjectLoader<Klant> objectLoader = new ObjectLoader<>(Klant.class, "KlantInformatie.json");
-    /* Load Objects  ^^^ */
+    // Laadt objecten
 
     public KlantAanmakenItem(String name) {
         super(name);
@@ -124,7 +120,7 @@ class KlantAanmakenItem extends MenuItem{
 
         while (true) {
 
-            // Vraag om klantinfo
+            // Vraag om klantInfo
             Klant klantinfo = KlantInfoToevoegen.enterKlantInfo(scanner);
 
             // Toon de nieuwe gegevens aan de gebruiker ter verificatie
@@ -147,15 +143,15 @@ class KlantAanmakenItem extends MenuItem{
             String antwoord = scanner.nextLine();
             if (antwoord.equalsIgnoreCase("ja")) {
 
-                // Laad de bestaande klantgegevens uit het JSON-bestand
+                // Laadt de bestaande klantgegevens uit het JSON-bestand
                 List<Klant> existingKlanten = objectLoader.loadObjects();
 
                 Klant klant = new Klant(klantinfo.getNaam(), klantinfo.getID(), klantinfo.getPassword(), klantinfo.getEmail(), klantinfo.getStraatnaam(), klantinfo.getHuisNr(), klantinfo.getPostcode(), klantinfo.getPlaatsnaam(), klantinfo.getKlantType(), klantinfo.getKlantKorting());
 
-                // Voeg het nieuwe KlantInfo-object toe aan de bestaande lijst
+                // Voegt het nieuwe klantInfo-object toe aan de bestaande lijst
                 existingKlanten.add(klant);
 
-                // Sla de bijgewerkte lijst met klantgegevens op in het JSON-bestand
+                // Slaat de bijgewerkte lijst met klantGegevens op in het JSON-bestand
                 objectSaver.saveObjects(existingKlanten);
 
                 System.out.println("\nDe klantgegevens zijn opgeslagen!");
@@ -165,7 +161,7 @@ class KlantAanmakenItem extends MenuItem{
             }
         }
 
-        System.out.println("Wil je terug naar het hoofdmenu? (ja/nee): ");
+        System.out.println("Wilt u terug naar het hoofdmenu? (ja/nee): ");
         String menuAntwoord = scanner.nextLine();
         if (menuAntwoord.equalsIgnoreCase("ja")) {
             HoofdMenu menu = new HoofdMenu();
@@ -176,12 +172,12 @@ class KlantAanmakenItem extends MenuItem{
 }
 class KlantenBekijkenItem extends MenuItem {
     Scanner scanner = new Scanner(System.in);
-    /* Save Objects vvv */
+
     ObjectSaver<Klant> objectSaver = new ObjectSaver<>("KlantInformatie.json");
-    /* Save Objects ^^^ */
-    /* Load Objects  vvv */
+    // Slaat objecten op
+
     ObjectLoader<Klant> objectLoader = new ObjectLoader<>(Klant.class, "KlantInformatie.json");
-    /* Load Objects  ^^^ */
+    // Laadt objecten
 
     public KlantenBekijkenItem(String name) {
         super(name);
@@ -189,15 +185,15 @@ class KlantenBekijkenItem extends MenuItem {
 
     public void execute() {
         while (true) {
-            //laad de lijst van klantobjecten uit json file
+            //Laadt de lijst van klantObjecten uit json file
             List<Klant> loadedObjects = objectLoader.loadObjects();
 
-            //print de lijst van klantobjecten
+            //Print de lijst van klantObjecten
             for (Klant objPrint : loadedObjects) {
                 System.out.println("\nKlantnaam: " + objPrint.getNaam() + "\nID: " + objPrint.getID());
             }
 
-            // klantoverzicht filteren op klantID
+            // KlantOverzicht filteren op klantID
             int ingevuldeID;
             System.out.println("\nVul klant ID in: ");
             ingevuldeID = scanner.nextInt();
@@ -216,39 +212,39 @@ class KlantenBekijkenItem extends MenuItem {
                 continue;
             }
 
-            // Print de Klantinfo
+            // Print de klantInfo
             printKlantDetails(selectedKlant);
 
             System.out.println("\nZijn deze klantgegevens correct? (ja/nee): ");
-            System.out.println("\nOf wil je deze klantgegevens verwijderen? (verwijder): ");
+            System.out.println("\nOf wilt u deze klantgegevens verwijderen? (verwijder): ");
 
             String gegevensCorrect = scanner.nextLine();
             if (gegevensCorrect.equalsIgnoreCase("nee")) {
-                System.out.println("\nVoer nieuwe gegevens in:");
+                System.out.println("\nVoer de nieuwe gegevens in: ");
 
-                // vraag om nieuwe klantinfo
+                // Vraag om nieuwe klantInfo
                 Klant klantinfo = KlantInfoToevoegen.enterKlantInfo(scanner);
 
                 updateKlant(selectedKlant, klantinfo);
 
-                // save de nieuwe klantinfo in json file
+                // Slaat de nieuwe klantInfo op in json file
                 objectSaver.saveObjects(loadedObjects);
 
                 System.out.println("\nDe klantgegevens zijn opgeslagen!");
 
             } else if (gegevensCorrect.equalsIgnoreCase("ja")) {
                 System.out.println("De klantgegevens zijn correct.");
-            } else if (gegevensCorrect.equalsIgnoreCase("verwijder")) {
+            } else if (gegevensCorrect.equalsIgnoreCase("Verwijder")) {
                 verwijderKlant(loadedObjects, selectedKlant);
 
-                // save de nieuwe klantinfo in json file
+                // Slaat de nieuwe klantInfo op in json file
                 objectSaver.saveObjects(loadedObjects);
             } else {
-                System.out.println("Antwoord niet herkend, probeer opnieuw (ja/nee/verwijder): ");
+                System.out.println("Antwoord niet herkend, probeer het opnieuw (ja/nee/verwijder): ");
                 continue;
             }
 
-            System.out.println("Wil je terug naar het hoofdmenu? (ja/nee): ");
+            System.out.println("Wilt u terug naar het hoofdmenu? (ja/nee): ");
             String antwoord = scanner.nextLine();
             if (antwoord.equalsIgnoreCase("ja")) {
                 HoofdMenu menu = new HoofdMenu();
@@ -288,13 +284,13 @@ class KlantenBekijkenItem extends MenuItem {
         selectedKlant.setKlantType(klantinfo.getKlantType());
         selectedKlant.setKlantKorting(klantinfo.getKlantKorting());
 
-        // Print the updated Klant details for the user to verify
-        System.out.println("\nHier zijn de nieuwe klantgegevens:");
+        // Print de nieuw klantgegevens zodat de klant ze kan bekijken
+        System.out.println("\nHier zijn de nieuwe klantgegevens: ");
         printKlantDetails(selectedKlant);
     }
 
     private void verwijderKlant(List<Klant> loadedObjects, Klant selectedKlant) {
         loadedObjects.remove(selectedKlant);
-        System.out.println("Klant is succesvol verwijderd!");
+        System.out.println("Klant is succesvol verwijderd.");
     }
 }

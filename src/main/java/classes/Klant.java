@@ -8,8 +8,8 @@ public class Klant extends Gebruiker {
     private double klantKorting;
     private ArrayList<Klant> klant; // De klant die bij de offerte hoort
 
-    public Klant(String naam, int ID, String password, String email, String klantType, double klantKorting) {
-        super(naam, ID, password, email);
+    public Klant(String naam, int ID, String password, String email, String straatnaam, int huisNr, String postcode, String plaatsnaam, String klantType, double klantKorting) {
+        super(naam, ID, password, email, straatnaam, huisNr, postcode, plaatsnaam);
         this.klantType = klantType;
         this.klantKorting = klantKorting;
         this.klant = new ArrayList<Klant>();
@@ -18,6 +18,8 @@ public class Klant extends Gebruiker {
     public ArrayList<Klant> getKlant() {
         return klant;
     }
+
+
 
     public String getKlantType() {
         return klantType;

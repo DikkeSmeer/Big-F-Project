@@ -1,25 +1,24 @@
 package classes;
 
-import java.util.ArrayList;
-
 public class Gebruiker {
     private String naam;
     private int ID;
     private String password;
     private String email;
+    private String straatnaam;
+    private int huisNr;
+    private String postcode;
+    private String plaatsnaam;
 
-    private ArrayList<Gebruiker> gebruikers;
-
-    public Gebruiker(String naam, int ID, String password, String email) {
+    public Gebruiker(String naam, int ID, String password, String email, String straatnaam, int huisNr, String postcode, String plaatsnaam) {
         this.naam = naam;
         this.ID = ID;
         this.password = password;
         this.email = email;
-    }
-
-    // Getters en setters
-    public Gebruiker() {
-        this.gebruikers = new ArrayList<>();
+        this.straatnaam = straatnaam;
+        this.huisNr = huisNr;
+        this.postcode = postcode;
+        this.plaatsnaam = plaatsnaam;
     }
 
     public String getNaam() {
@@ -54,11 +53,35 @@ public class Gebruiker {
         this.email = email;
     }
 
-    public ArrayList<Gebruiker> getGebruikers() {
-        return gebruikers;
+    public String getStraatnaam() {
+        return straatnaam;
     }
 
-    public void setGebruikers(ArrayList<Gebruiker> gebruikers) {
-        this.gebruikers = gebruikers;
+    public void setStraatnaam(String straatnaam) {
+        this.straatnaam = straatnaam;
+    }
+
+    public int getHuisNr() {
+        return huisNr;
+    }
+
+    public void setHuisNr(int huisNr) {
+        this.huisNr = huisNr;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getPlaatsnaam() {
+        return plaatsnaam;
+    }
+
+    public void setPlaatsnaam(String plaatsnaam) {
+        this.plaatsnaam = plaatsnaam;
     }
 }

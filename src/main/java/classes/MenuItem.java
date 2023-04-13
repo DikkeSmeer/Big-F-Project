@@ -68,7 +68,6 @@ class OfferteBekijkenItem extends MenuItem {
         super(name);
     }
     public void execute() {
-        //Lijst.printLijst(Lijst.getLijst(),3);
         System.out.println("Dit voert de :Alle Offerte Laten zien: uit.");
     }
 }
@@ -123,7 +122,7 @@ class KlantAanmakenItem extends MenuItem{
 
         while (true) {
 
-            // Ask for the new Klant details
+            // Vraag om klantinfo
             Klant klantinfo = KlantInfoToevoegen.enterKlantInfo(scanner);
 
             // Toon de nieuwe gegevens aan de gebruiker ter verificatie
@@ -187,23 +186,21 @@ class KlantenBekijkenItem extends MenuItem {
 
     public void execute() {
         while (true) {
-            // Load the list of Klant objects from the JSON file
+            //laad de lijst van klantobjecten uit json file
             List<Klant> loadedObjects = objectLoader.loadObjects();
 
-            // Print the list of loaded Klant objects
+            //print de lijst van klantobjecten
             for (Klant objPrint : loadedObjects) {
                 System.out.println("\nKlantnaam: " + objPrint.getNaam() + "\nID: " + objPrint.getID());
             }
 
-            // Ask the user to enter a Klant ID
+            // klantoverzicht filteren op klantID
             int ingevuldeID;
             System.out.println("\nVul klant ID in: ");
             ingevuldeID = scanner.nextInt();
-            scanner.nextLine(); // Add this line to consume the newline character
-
+            scanner.nextLine();
             Klant selectedKlant = null;
 
-            // Search for the Klant object with the entered ID
             for (Klant objSearch : loadedObjects) {
                 if (objSearch.getID() == ingevuldeID) {
                     selectedKlant = objSearch;
@@ -216,7 +213,7 @@ class KlantenBekijkenItem extends MenuItem {
                 continue;
             }
 
-            // Print the Klant details
+            // Print de Klantinfo
             printKlantDetails(selectedKlant);
 
             System.out.println("\nZijn deze klantgegevens correct? (ja/nee): ");
@@ -226,15 +223,14 @@ class KlantenBekijkenItem extends MenuItem {
             if (gegevensCorrect.equalsIgnoreCase("nee")) {
                 System.out.println("\nVoer nieuwe gegevens in:");
 
-                // Ask for the new Klant details
+                // vraag om nieuwe klantinfo
                 Klant klantinfo = KlantInfoToevoegen.enterKlantInfo(scanner);
 
                 updateKlant(selectedKlant, klantinfo);
 
-                // Save the updated Klant objects to the JSON file
+                // save de nieuwe klantinfo in json file
                 objectSaver.saveObjects(loadedObjects);
 
-                // Print a message to confirm that the Klant details have been updated
                 System.out.println("\nDe klantgegevens zijn opgeslagen!");
 
             } else if (gegevensCorrect.equalsIgnoreCase("ja")) {
@@ -242,7 +238,7 @@ class KlantenBekijkenItem extends MenuItem {
             } else if (gegevensCorrect.equalsIgnoreCase("verwijder")) {
                 verwijderKlant(loadedObjects, selectedKlant);
 
-                // Save the updated Klant objects to the JSON file
+                // save de nieuwe klantinfo in json file
                 objectSaver.saveObjects(loadedObjects);
             } else {
                 System.out.println("Antwoord niet herkend, probeer opnieuw (ja/nee/verwijder): ");

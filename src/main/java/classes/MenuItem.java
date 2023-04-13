@@ -57,7 +57,7 @@ class OfferteAanmakenItem extends MenuItem {
         super(name);
     }
     public void execute() {
-        System.out.println("Dit voert de :Offerte Aanmaken: uit.");
+        System.out.println("Dit voert het :Offerte Aanmaken: uit.");
         // hier execute offerte aanmaak functie in offerte.java
         Offerte offerte = new Offerte();
     }

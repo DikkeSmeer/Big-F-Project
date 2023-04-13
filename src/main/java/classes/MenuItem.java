@@ -92,6 +92,8 @@ class KlantInfoToevoegen {
             scanner.nextLine();
             System.out.println("Klant postcode: ");
             String klantPostcode = scanner.nextLine();
+            System.out.println("Klant plaatsnaam: ");
+            String klantPlaatsnaam = scanner.nextLine();
 
             System.out.println("Klant type: ");
             String klantType = scanner.nextLine();
@@ -99,7 +101,7 @@ class KlantInfoToevoegen {
             double klantKorting = scanner.nextDouble();
             scanner.nextLine();
 
-            Klant klant = new Klant(klantNaam, klantID, klantWachtwoord, klantEmail, klantStraatnaam, klantHuisNr, klantPostcode, klantType, klantKorting);
+            Klant klant = new Klant(klantNaam, klantID, klantWachtwoord, klantEmail, klantStraatnaam, klantHuisNr, klantPostcode, klantPlaatsnaam, klantType, klantKorting);
             return klant;
     }
 }
@@ -135,6 +137,7 @@ class KlantAanmakenItem extends MenuItem{
             System.out.println("Klant straatnaam: " + klantinfo.getStraatnaam());
             System.out.println("Klant huisnummer: " + klantinfo.getHuisNr());
             System.out.println("Klant postcode: " + klantinfo.getPostcode());
+            System.out.println("Klant plaatsnaam: " + klantinfo.getPlaatsnaam());
 
             System.out.println("Klant type: " + klantinfo.getKlantType());
             System.out.println("Klant korting: " + klantinfo.getKlantKorting());
@@ -147,7 +150,7 @@ class KlantAanmakenItem extends MenuItem{
                 // Laad de bestaande klantgegevens uit het JSON-bestand
                 List<Klant> existingKlanten = objectLoader.loadObjects();
 
-                Klant klant = new Klant(klantinfo.getNaam(), klantinfo.getID(), klantinfo.getPassword(), klantinfo.getEmail(), klantinfo.getStraatnaam(), klantinfo.getHuisNr(), klantinfo.getPostcode(), klantinfo.getKlantType(), klantinfo.getKlantKorting());
+                Klant klant = new Klant(klantinfo.getNaam(), klantinfo.getID(), klantinfo.getPassword(), klantinfo.getEmail(), klantinfo.getStraatnaam(), klantinfo.getHuisNr(), klantinfo.getPostcode(), klantinfo.getPlaatsnaam(), klantinfo.getKlantType(), klantinfo.getKlantKorting());
 
                 // Voeg het nieuwe KlantInfo-object toe aan de bestaande lijst
                 existingKlanten.add(klant);
@@ -265,6 +268,7 @@ class KlantenBekijkenItem extends MenuItem {
         System.out.println("Klant straatnaam: " + klant.getStraatnaam());
         System.out.println("Klant huisnummer: " + klant.getHuisNr());
         System.out.println("Klant postcode: " + klant.getPostcode());
+        System.out.println("Klant plaatsnaam: " + klant.getPlaatsnaam());
 
         System.out.println("Klant type: " + klant.getKlantType());
         System.out.println("Klant korting: " + klant.getKlantKorting());
@@ -279,6 +283,7 @@ class KlantenBekijkenItem extends MenuItem {
         selectedKlant.setStraatnaam(klantinfo.getStraatnaam());
         selectedKlant.setHuisNr(klantinfo.getHuisNr());
         selectedKlant.setPostcode(klantinfo.getPostcode());
+        selectedKlant.setPlaatsnaam(klantinfo.getPlaatsnaam());
 
         selectedKlant.setKlantType(klantinfo.getKlantType());
         selectedKlant.setKlantKorting(klantinfo.getKlantKorting());

@@ -8,8 +8,9 @@ public class Gebruiker {
     private String straatnaam;
     private int huisNr;
     private String postcode;
+    private String plaatsnaam;
 
-    public Gebruiker(String naam, int ID, String password, String email, String straatnaam, int huisNr, String postcode) {
+    public Gebruiker(String naam, int ID, String password, String email, String straatnaam, int huisNr, String postcode, String plaatsnaam) {
         this.naam = naam;
         this.ID = ID;
         this.password = password;
@@ -17,6 +18,7 @@ public class Gebruiker {
         this.straatnaam = straatnaam;
         this.huisNr = huisNr;
         this.postcode = postcode;
+        this.plaatsnaam = plaatsnaam;
     }
 
     public String getNaam() {
@@ -73,5 +75,13 @@ public class Gebruiker {
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
+    }
+
+    public String getPlaatsnaam() {
+        return plaatsnaam;
+    }
+
+    public void setPlaatsnaam(String plaatsnaam) {
+        this.plaatsnaam = plaatsnaam;
     }
 }

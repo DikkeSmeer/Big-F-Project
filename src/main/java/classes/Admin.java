@@ -7,7 +7,7 @@ public class Admin extends Gebruiker{
         super(naam, ID, password, email);
         this.isAdmin = isAdmin;
     }
-
+    // getter en setter
     public boolean isAdmin() {
         return isAdmin;
     }

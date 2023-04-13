@@ -19,7 +19,7 @@ public class Menu {
 }
 class HoofdMenu extends Menu {
     public void createMenu() {
-         //add opties in het menu die een eigen extend hebben - zoals offerte aanmaak menu
+        // add opties in het menu die een eigen extend hebben - zoals offerte aanmaak menu
         // - OfferteMenu - KlantenMenu - ExtrasMenu
         menu.add(new OfferteOverzichtItem("Offerte Overzicht"));
         menu.add(new KlantenOverzichtItem("Klanten Overzicht"));
@@ -31,8 +31,8 @@ class HoofdMenu extends Menu {
     }
 }
 
-// alle sub-menu's die items uitvoeren hieronder
-// Offerte Sub Menu
+    // alle sub-menu's die items uitvoeren hieronder
+    // Offerte Sub Menu
 class OfferteMenu extends Menu {
     public void createMenu() {
         menu.add(new OfferteAanmakenItem("Offerte Aanmaken"));
@@ -40,11 +40,11 @@ class OfferteMenu extends Menu {
         menu.add(new TerugItem("Terug"));
     }
     public void execute(int input) {
-        // execute de execute van de mnu item, leest input van de scanner
+        // execute de execute van de menu item, leest input van de scanner
         menu.get(input-1).execute();
     }
 }
-// Klanten Menu
+    // Klanten Menu
 class KlantenMenu extends Menu {
     public void createMenu(){
         menu.add(new KlantAanmakenItem("Klant Aanmaken"));

@@ -17,6 +17,7 @@ public class Gebruiker {
         this.email = email;
     }
 
+    // getters en setters
     public Gebruiker() {
         this.gebruikers = new ArrayList<>();
     }

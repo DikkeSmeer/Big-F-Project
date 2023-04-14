@@ -17,7 +17,7 @@ public class Offerte {
     private int offerteID;
     private String offerteNaam;
     private String beschrijving;
-    static private int ingevuldeKlantID;
+    private static int ingevuldeKlantID;
     private static String IDNaam;
     private static String IDstraatnaam;
     private static int IDhuisNr;

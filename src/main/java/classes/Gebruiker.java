@@ -5,12 +5,20 @@ public class Gebruiker {
     private int ID;
     private String password;
     private String email;
+    private String straatnaam;
+    private int huisNr;
+    private String postcode;
+    private String plaatsnaam;
 
-    public Gebruiker(String naam, int ID, String password, String email) {
+    public Gebruiker(String naam, int ID, String password, String email, String straatnaam, int huisNr, String postcode, String plaatsnaam) {
         this.naam = naam;
         this.ID = ID;
         this.password = password;
         this.email = email;
+        this.straatnaam = straatnaam;
+        this.huisNr = huisNr;
+        this.postcode = postcode;
+        this.plaatsnaam = plaatsnaam;
     }
 
     public String getNaam() {
@@ -43,5 +51,37 @@ public class Gebruiker {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getStraatnaam() {
+        return straatnaam;
+    }
+
+    public void setStraatnaam(String straatnaam) {
+        this.straatnaam = straatnaam;
+    }
+
+    public int getHuisNr() {
+        return huisNr;
+    }
+
+    public void setHuisNr(int huisNr) {
+        this.huisNr = huisNr;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getPlaatsnaam() {
+        return plaatsnaam;
+    }
+
+    public void setPlaatsnaam(String plaatsnaam) {
+        this.plaatsnaam = plaatsnaam;
     }
 }
